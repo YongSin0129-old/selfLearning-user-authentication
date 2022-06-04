@@ -1,9 +1,17 @@
 const express = require('express')
 const router = express.Router()
+const Users = require('../../models/users')
 
 /* GET users listing. */
-router.get('/', function (req, res, next) {
-  res.send('respond with a resource')
+router.post('/', async (req, res, next) => {
+  const { email, password } = req.body
+  const user = await Users.findOne({ email })
+  // console.log('router.post ~ user', user)
+  // console.log('router.post ~ user.password', user.password)
+  if (user === null || password !== user.password) {
+    res.render('./', { errorMsg: 'wrong email or password' })
+  } else {
+    res.render('welcome', { firstName: user.firstName })
+  }
 })
-
 module.exports = router
