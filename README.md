@@ -51,7 +51,7 @@ npm install
 ```
 
 
-4. 在此專案的資料夾新增一個.env，放入 DOT_MONGODB_URI，連結你的 mongoBD
+4. 在此專案的資料夾新增一個.env，放入 MONGODB_URI_users，連結你的 mongoBD
 
 ```
 MONGODB_URI_users='mongodb+srv://你的帳號:你的密碼@cluster0.ac5wn.mongodb.net/資料庫名稱?retryWrites=true&w=majority'
