@@ -9,7 +9,8 @@ router.post('/', async (req, res, next) => {
   // console.log('router.post ~ user', user)
   // console.log('router.post ~ user.password', user.password)
   if (user === null || password !== user.password) {
-    res.render('./', { errorMsg: 'wrong email or password' })
+    const msg = 'wrong email or password'
+    res.redirect('/?msg=' + msg)
   } else {
     res.render('welcome', { firstName: user.firstName })
   }
