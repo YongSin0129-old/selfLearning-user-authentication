@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser')
 const logger = require('morgan')
 const router = require('./routes')
 require('./config/mongoose')
+const session = require('express-session')
 
 const app = express()
 
@@ -15,6 +16,15 @@ app.use(logger('dev'))
 app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
+
+app.set('trust proxy', 1) // trust first proxy
+app.use(
+  session({
+    secret: 'YS session training',
+    resave: false,
+    saveUninitialized: false
+  })
+)
 
 app.use(router)
 
